@@ -1,4 +1,4 @@
-package java.clothes.model;
+package javax.clothes.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,9 +14,9 @@ public class Database {
 	 * connect to sql with config files.
 	 **/
 	public static Connection getSQLServerConnection() throws SQLException, ClassNotFoundException {
-		String hostName = "localhost";
-		String sqlInstanceName = "E6440-PC\\SQLEXP";
-		String database = "Stores";
+		String hostName = "E6440-PC";
+		String sqlInstanceName = "SQLEXP";
+		String database = "Store";
 		String userName = "";
 		String password = "";
 

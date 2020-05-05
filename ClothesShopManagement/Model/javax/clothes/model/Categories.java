@@ -1,7 +1,7 @@
 /**
  * 
  */
-package java.clothes.model;
+package javax.clothes.model;
 
 /**
  * @author E6440
