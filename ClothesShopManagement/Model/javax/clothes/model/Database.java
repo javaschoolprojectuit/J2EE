@@ -1,8 +1,11 @@
 package javax.clothes.model;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * @author E6440
@@ -14,25 +17,21 @@ public class Database {
 	 * connect to sql with config files.
 	 **/
 	public static Connection getSQLServerConnection() throws SQLException, ClassNotFoundException {
-		String hostName = "E6440-PC";
-		String sqlInstanceName = "SQLEXP";
-		String database = "Store";
-		String userName = "";
-		String password = "";
-
-		return getSQLServerConnection(hostName, sqlInstanceName, database, userName, password);
+		Properties prop = new Properties();	
+		try {
+				prop.load(readConfigFile("config.properties"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			String dbURL = "jdbc:sqlserver://"+prop.getProperty("serverName") + ";databaseName=" + prop.getProperty("databaseName");
+			String userName = prop.getProperty("userName");
+			String pass = prop.getProperty("password");
+			Connection conn = DriverManager.getConnection(dbURL, userName, pass);
+			return conn;
 	}
-
-	/**
-	 * connect to sql with custom input.
-	 **/
-	public static Connection getSQLServerConnection(String hostName, String sqlInstanceName, String database,
-			String userName, String password) throws ClassNotFoundException, SQLException {
-
-		String connectionURL = "jdbc:jtds:sqlserver://" + hostName + ":1433/" + database + ";instance="
-				+ sqlInstanceName;
-
-		Connection conn = DriverManager.getConnection(connectionURL, userName, password);
-		return conn;
+	
+	public static InputStream readConfigFile(String path) {
+		InputStream ip= Database.class.getClassLoader().getResourceAsStream(path);;
+		return ip;
 	}
 }
