@@ -1,4 +1,5 @@
-package javax.clothes.model;
+
+package javax.clothes.mapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,15 +8,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-/**
- * @author E6440
- *
- */
 
-public class Database {
-	/**
-	 * connect to sql with config files.
-	 **/
+public class DBConnectionService {
+
 	public static Connection getSQLServerConnection() throws SQLException, ClassNotFoundException {
 		Properties prop = new Properties();	
 		try {
@@ -23,7 +18,10 @@ public class Database {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			String dbURL = "jdbc:sqlserver://"+prop.getProperty("serverName") + ";databaseName=" + prop.getProperty("databaseName");
+			String dbURL = "jdbc:sqlserver://" + 
+							prop.getProperty("serverName") + 
+							";databaseName=" + 
+							prop.getProperty("databaseName");
 			String userName = prop.getProperty("userName");
 			String pass = prop.getProperty("password");
 			Connection conn = DriverManager.getConnection(dbURL, userName, pass);
@@ -31,7 +29,8 @@ public class Database {
 	}
 	
 	public static InputStream readConfigFile(String path) {
-		InputStream ip= Database.class.getClassLoader().getResourceAsStream(path);;
+		InputStream ip= DBConnectionService.class.getClassLoader().getResourceAsStream(path);;
 		return ip;
 	}
+    
 }
