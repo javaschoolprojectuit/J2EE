@@ -1,4 +1,5 @@
 CREATE DATABASE Store;
+GO
 
 USE Store;
 
@@ -60,13 +61,13 @@ CREATE TABLE PRODUCTS (
 	PROD_ID int identity(1,1) not null,
 	NAME varchar(20),
 	DESCRIPTION varchar(MAX),
-	PRICE decimal,
-	Size decimal,
+	PRICE int,
+	Size int,
 	IMAGE varchar(50),
 	CAT_ID int,
 	SUPPLIER_ID int,
 	DELETED bit,
-	QUANTITY decimal,
+	QUANTITY int,
 	primary key (PROD_ID),
 	constraint FK_CATEGORY foreign key (CAT_ID) references CATEGORIES(CAT_ID),
 	constraint FK_SUPPLIER foreign key (SUPPLIER_ID) references SUPPLIERS(SUPPLIER_ID)
@@ -82,11 +83,11 @@ CREATE TABLE PAYMENTS (
 CREATE TABLE ORDERS (
 	ORDER_ID int identity(1,1) not null,
 	NUMBER varchar(max),
-	ORDERDATE datetime,
-	SHIPPINGDATE datetime,
-	TAX decimal,
+	ORDERDATE nvarchar(10),
+	SHIPPINGDATE nvarchar(10),
+	TAX int,
 	STATUS varchar(10),
-	PAYMENTDATE datetime,
+	PAYMENTDATE nvarchar(10),
 	USER_ID int,
 	PAYMENT_ID int,
 	constraint FK_USER_ORD foreign key (USER_ID) references USERS(USER_ID),
@@ -96,9 +97,9 @@ CREATE TABLE ORDERS (
 
 CREATE TABLE ORDER_DETAIL (
 	OD_ID int identity(1,1) not null,
-	PRICE decimal,
-	QUANTITY decimal,
-	DISCOUNT decimal,
+	PRICE int,
+	QUANTITY int,
+	DISCOUNT int,
 	ORDER_ID int,
 	PROD_ID int,
 	primary key (OD_ID),
