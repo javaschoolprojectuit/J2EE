@@ -75,7 +75,7 @@ public class UserMapper extends DBMapper {
 		return userdto;
 	}
 
-	public void addUser(UserDTO user) {
+	public boolean addUser(UserDTO user) {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String fields = "";
@@ -87,13 +87,14 @@ public class UserMapper extends DBMapper {
 					 "," + String.valueOf(user.isDeleted()) + ')';
 			String sqlStr = "INSERT INTO USERS (FIRSTNAME,LASTNAME,ADDRESS,CITY,PHONE,USERNAME,PASSWORD,ROLE_ID,DELETED) VALUES " + fields ;
 			stmt.executeUpdate(sqlStr); // Send the query to the server
+			return true;
 
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			return false;
 		}
 	}
 
-	public void updateUser(UserDTO user) {
+	public boolean updateUser(UserDTO user) {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String fields = "";
@@ -104,19 +105,21 @@ public class UserMapper extends DBMapper {
 					 "', role_id=" + user.getRoleID() + ", deleted=" + user.isDeleted();
 			String sqlStr = "UPDATE USERS SET " + fields + "WHERE USER_ID = " + Integer.toString(user.getId());
 			stmt.executeUpdate(sqlStr); // Send the query to the server
-
+			return true;
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			return false;
 		}
 	}
 
-	public void deleteUser(int userid) {
+	public boolean deleteUser(int userid) {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String sqlStr = "DELETE FROM users WHERE userid = " + userid;
 			stmt.executeUpdate(sqlStr); // Send the query to the server
+			return true;
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			return false;
 		}
 	}
 }

@@ -31,35 +31,41 @@ public class RoleMapper extends DBMapper {
 		return role;
 	}
 	
-	public void addRole(RoleDTO role) {
+	public boolean addRole(RoleDTO role) {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String sqlStr = "INSERT INTO ROLES (TYPE) VALUES ('" + role.getType() +"')";
 			stmt.executeUpdate(sqlStr);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
-	public void updateRole(RoleDTO role) {
+	public boolean updateRole(RoleDTO role) {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String sqlStr = "UPDATE ROLES SET TYPE = '" + role.getType() + "'" + 
 							" WHERE ROLE_ID=" + Integer.toString(role.getId());
 			stmt.executeUpdate(sqlStr);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
-	public void deleteRole(int id) {
+	public boolean deleteRole(int id) {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String sqlStr = "DELETE FROM ROLES WHERE ROLE_ID = " + Integer.toString(id);
 			stmt.executeUpdate(sqlStr);
+			return true;
 	
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 }

@@ -69,7 +69,7 @@ public class SupplierMapper extends DBMapper {
 		return supp;
 	}
 	
-	public void addSupplier(SupplierDTO supp) {
+	public boolean addSupplier(SupplierDTO supp) {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String sqlStr = "INSERT INTO SUPPLIERS (NAME,ADDRESS,CITY,DISTRICT,EMAIL,PHONE) VALUES ('" + 
@@ -77,12 +77,14 @@ public class SupplierMapper extends DBMapper {
 							supp.getCity() + "','" + supp.getDistrict() + "','" + 
 							supp.getEmail() + "','" + supp.getPhone() +"')";
 			stmt.executeUpdate(sqlStr);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
-	public void updateSupplier(SupplierDTO supp) {
+	public boolean updateSupplier(SupplierDTO supp) {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String fields = "NAME = '" + supp.getName() + "'," +
@@ -94,19 +96,23 @@ public class SupplierMapper extends DBMapper {
 			String sqlStr = "UPDATE SUPPLIERS SET " + fields + 
 							" WHERE ROLE_ID=" + Integer.toString(supp.getId());
 			stmt.executeUpdate(sqlStr);
+			
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
-	public void deleteSupplier(int id) {
+	public boolean deleteSupplier(int id) {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String sqlStr = "DELETE FROM SUPPLIERS WHERE SUPPLIER_ID = " + Integer.toString(id);
 			stmt.executeUpdate(sqlStr);
-	
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 }
