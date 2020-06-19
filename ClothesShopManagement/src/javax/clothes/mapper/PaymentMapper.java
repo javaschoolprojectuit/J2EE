@@ -35,8 +35,9 @@ public class PaymentMapper extends DBMapper {
 						 "ACTIVE = ISNULL(" + payment.isActive() + ",ACTIVE)";
 			
 			ResultSet rs = stmt.executeQuery(sql);
-			PaymentDTO paymentdto = new PaymentDTO();
+			
 			while (rs != null && rs.next()) {
+				PaymentDTO paymentdto = new PaymentDTO();
 				paymentdto = resultSetMapping(rs);
 				payments.add(paymentdto);
 			}

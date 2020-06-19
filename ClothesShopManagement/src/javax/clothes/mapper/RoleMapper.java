@@ -3,6 +3,7 @@ package javax.clothes.mapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.clothes.dto.RoleDTO;
 
@@ -29,6 +30,26 @@ public class RoleMapper extends DBMapper {
 		}
 		
 		return role;
+	}
+	
+	public ArrayList<RoleDTO> getRolesByFilter(String type) {
+		ArrayList<RoleDTO> roles = new ArrayList<RoleDTO>();
+		try {
+			Statement stmt = getConnection().createStatement();
+			String sqlStr = "SELECT * FROM ROLES WHERE TYPE LIKE '%" + type + "%'";
+			ResultSet rs = stmt.executeQuery(sqlStr);
+
+			while(rs!= null && rs.next()) {
+				RoleDTO role = new RoleDTO();
+				role.setId(rs.getInt("ROLE_ID"));
+				role.setType(rs.getString("TYPE"));
+				roles.add(role);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return roles;
 	}
 	
 	public boolean addRole(RoleDTO role) {

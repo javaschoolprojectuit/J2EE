@@ -45,13 +45,15 @@ public class UserBO {
 		return user;
 	}
 	
-	public void addUser(UserDTO userdto) {
+	public boolean addUser(UserDTO userdto) {
 		UserMapper mapper = null;
 		try {
 			mapper = new UserMapper();
 			mapper.addUser(userdto);
+			return true;
 		} catch (Exception ex) {
 			Logger.getLogger(UserBO.class.getName()).log(Level.SEVERE, null, ex);
+			return false;
 		} finally {
 			try {
 				mapper.closeConnection();

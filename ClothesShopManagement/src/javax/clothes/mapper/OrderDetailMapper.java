@@ -36,8 +36,9 @@ public class OrderDetailMapper extends DBMapper {
 			Statement stmt = getConnection().createStatement();
 			String sql = "SELECT * FROM ORDER_DETAIL WHERE ORDER_ID=" + Integer.toString(orderId);
 			ResultSet rs = stmt.executeQuery(sql);
-			OrderDetailDTO orderdetail = new OrderDetailDTO();
+			
 			while (rs != null && rs.next()) {
+				OrderDetailDTO orderdetail = new OrderDetailDTO();
 				orderdetail = resultSetMapping(rs);
 				order.add(orderdetail);
 			}

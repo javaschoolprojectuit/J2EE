@@ -81,8 +81,9 @@ public class ProductMapper extends DBMapper{
 						 priceSql + sizeSql + quanSql;
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs != null && rs.next()) {
-				product = resultSetMapping(rs);
-				products.add(product);
+				ProductDTO prd = new ProductDTO();
+				prd = resultSetMapping(rs);
+				products.add(prd);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -91,6 +92,8 @@ public class ProductMapper extends DBMapper{
 	}
 	
 	public boolean addNewProduct(ProductDTO product) {
+		int convertBit = 0;
+		if(product.isDeleted()) convertBit = 1;
 		try {
 			Statement stmt = getConnection().createStatement();
 			String values = "(" + product.getCatId() + ",'" + 
@@ -100,7 +103,7 @@ public class ProductMapper extends DBMapper{
 							product.getQuantity() + "," + 
 							product.getSize() + "," + 
 							product.getSuppId() + "," + 
-							product.isDeleted() + ")"; 
+							convertBit + ")"; 
 			String sql = "INSERT INTO PRODUCTS (CAT_ID,IMAGE,NAME,PRICE,QUANTITY,SIZE,SUPPLIER_ID,DELETED) VALUES" + values;
 			
 			stmt.executeUpdate(sql);

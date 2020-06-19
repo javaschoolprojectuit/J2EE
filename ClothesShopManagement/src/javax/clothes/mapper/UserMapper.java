@@ -76,6 +76,8 @@ public class UserMapper extends DBMapper {
 	}
 
 	public boolean addUser(UserDTO user) {
+		int convertBit = 0;
+		if (user.isDeleted()) convertBit = 1; 
 		try {
 			Statement stmt = getConnection().createStatement();
 			String fields = "";
@@ -84,7 +86,7 @@ public class UserMapper extends DBMapper {
 					 "','" + user.getPhone() + "','" + user.getPhone() +
 					 "','" + user.getUserName()  +
 					 "'," + Integer.toString(user.getRoleID()) + 
-					 "," + String.valueOf(user.isDeleted()) + ')';
+					 "," + convertBit + ')';
 			String sqlStr = "INSERT INTO USERS (FIRSTNAME,LASTNAME,ADDRESS,CITY,PHONE,USERNAME,PASSWORD,ROLE_ID,DELETED) VALUES " + fields ;
 			stmt.executeUpdate(sqlStr); // Send the query to the server
 			return true;
