@@ -35,6 +35,26 @@ public class UserMapper extends DBMapper {
 		return temp;
 	}
 
+	public UserDTO checkUserLogin(UserDTO user) {
+		UserDTO userdto = new UserDTO();
+		try {
+			Statement stmt = getConnection().createStatement();
+			String sqlStr = "SELECT * FROM USERS WHERE " + "EMAIL ='" + user.getEmail() + "'" + " AND PASSWORD ='"+ user.getPassword() + "'";
+
+			ResultSet rs = stmt.executeQuery(sqlStr); // Send the query to the server
+
+			while (rs != null && rs.next()) {
+				UserDTO queryResult = new UserDTO();
+				queryResult = resultSetMapping(rs);
+				userdto = queryResult;
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return userdto;
+	}
+
 	public ArrayList<UserDTO> getUsersByFilters(UserDTO user) {
 		ArrayList<UserDTO> users = new ArrayList<>();
 		try {

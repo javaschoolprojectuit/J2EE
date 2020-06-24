@@ -15,6 +15,7 @@ public class UserDTO {
 	private int roleID;
 	
 	public UserDTO() {
+		this.id = -1;
 		this.firstName = "";
 		this.lastName = "";
 		this.address = "";

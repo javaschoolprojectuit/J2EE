@@ -8,7 +8,8 @@
 <title>Home</title>
 </head>
 <t:site>
-	<h1>${currentSession.getUserName()}</h1>
+	<h1>Welcome back ${currentSession.getUserName()}</h1>
 	<a href="AdminUser">Users Management</a>
+	<a href="AdminCategory">Categories Management</a>
 </t:site>
 </html>

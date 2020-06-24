@@ -45,6 +45,24 @@ public class UserBO {
 		return user;
 	}
 	
+	public UserDTO checkUserLogin(UserDTO user) {
+		UserMapper mapper = null;
+		UserDTO userdto = new UserDTO();
+		try {
+			mapper = new UserMapper();
+			userdto = mapper.checkUserLogin(user);
+		} catch (Exception ex) {
+			Logger.getLogger(UserBO.class.getName()).log(Level.SEVERE, null, ex);
+		} finally {
+			try {
+				mapper.closeConnection();
+			} catch (Exception ex) {
+				Logger.getLogger(UserBO.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+		return userdto;
+	}
+	
 	public boolean addUser(UserDTO userdto) {
 		UserMapper mapper = null;
 		try {
