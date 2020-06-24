@@ -101,13 +101,17 @@ public class UserMapper extends DBMapper {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String fields = "";
-			fields = "('" + user.getFirstName() + "','" + user.getLastName()  +
-					 "','" + user.getAddress() + "','" + user.getCity() +
-					 "','" + user.getPhone() + "','" + user.getPhone() +
+			fields = "('"+user.getEmail() +
+					 "','" + user.getFirstName() + 
+					 "','" + user.getLastName()  +
+					 "','" + user.getAddress() + 
+					 "','" + user.getCity() +
+					 "','" + user.getPhone() +
 					 "','" + user.getUserName()  +
+					 "','" + user.getPassword() +
 					 "'," + Integer.toString(user.getRoleID()) + 
 					 "," + convertBit + ')';
-			String sqlStr = "INSERT INTO USERS (FIRSTNAME,LASTNAME,ADDRESS,CITY,PHONE,USERNAME,PASSWORD,ROLE_ID,DELETED) VALUES " + fields ;
+			String sqlStr = "INSERT INTO USERS (EMAIL,FIRSTNAME,LASTNAME,ADDRESS,CITY,PHONE,USERNAME,PASSWORD,ROLE_ID,DELETED) VALUES " + fields ;
 			stmt.executeUpdate(sqlStr); // Send the query to the server
 			return true;
 
@@ -122,7 +126,7 @@ public class UserMapper extends DBMapper {
 			String fields = "";
 			fields = "firstname='" + user.getFirstName() + "', lastname='" + user.getLastName()  +
 					 "', address='" + user.getAddress() + "', city='" + user.getCity() +
-					 "', email='" + user.getPhone() + "', phone='" + user.getPhone() +
+					 "', email='" + user.getEmail() + "', phone='" + user.getPhone() +
 					 "', username='" + user.getUserName() + "', password='" + user.getPassword() +
 					 "', role_id=" + user.getRoleID() + ", deleted=" + user.isDeleted();
 			String sqlStr = "UPDATE USERS SET " + fields + "WHERE USER_ID = " + Integer.toString(user.getId());
