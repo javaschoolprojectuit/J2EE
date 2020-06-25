@@ -10,8 +10,13 @@
 </head>
 <t:site>
 	<div id="edit-user">
-		<form method="post" action="AddEditUserSubmit">
+		<form name="editUserForm" method="post" action="AddEditUserSubmit">
 			<div class="row">
+				<div class="col-md-4 py-1">
+					${inputUser.getId()}<input type="hidden" name="id"
+						value="${inputUser.getId()}" />
+				</div>
+				<div class="col-md-8"></div>
 				<div class="col-md-4 py-1">
 					First name:<input type="text" name="fname"
 						value="${inputUser.getFirstName()}" width="30" required />
@@ -38,7 +43,7 @@
 				</div>
 				<div class="col-md-8"></div>
 				<div class="col-md-4 py-1">
-					Email:<input type="text" name="email"
+					Email:<input type="email" name="email"
 						value="${inputUser.getEmail()}" width="30" required />
 				</div>
 				<div class="col-md-8"></div>
@@ -47,9 +52,14 @@
 						value="${inputUser.getUserName()}" width="30" required />
 				</div>
 				<div class="col-md-8"></div>
+				<c:set var="type" value='type="password"' />
+				<c:if test="${currentSession.getRoleID() == 1}">
+					<c:set var="type" value='type="text"' />
+				</c:if>
 				<div class="col-md-4 py-1">
-					Password:<input id="password" type="password" name="password"
-						value="${inputUser.getPassword()}" width="30" required />
+					Password:<input id="password" <c:out value='${type}' />
+						name="password" value="${inputUser.getPassword()}" width="30"
+						required />
 				</div>
 				<div class="col-md-8"></div>
 				<div class="col-md-4 py-1">
@@ -59,16 +69,41 @@
 				<div class="col-md-8"></div>
 				<div class="col-md-4 py-1">
 					<c:if test="${currentSession.getRoleID() == 1}">
-				Role:
-				<Select name="role">
+						Role:
+						<Select name="role">
 							<c:forEach items="${roles}" var="role">
-								<option value="${role.getId()}">${role.getType()}</option>
+								<c:choose>
+									<c:when test="${inputUser.getRoleID() == role.getId()}">
+										<c:set var="selected" value='selected="selected"' />
+									</c:when>
+									<c:otherwise>
+										<c:set var="selected" value='' />
+									</c:otherwise>
+								</c:choose>
+								<option value="${role.getId()}" <c:out value='${selected}' />>${role.getType()}</option>
 							</c:forEach>
 						</Select>
 					</c:if>
 				</div>
 				<div class="col-md-8"></div>
-				<input class="btn btn-primary" type="submit" value="submit" />
+				<input type="hidden" name="action" />
+				<c:set var="act" value="Create" />
+				<c:if test="${inputUser.getId() > 0}">
+					<c:set var="act" value="Edit" />
+				</c:if>
+				<div class="col-md-4">
+					<input class="btn btn-primary" type="submit"
+						value="<c:out value='${act}' />"
+						onclick="{document.editUserForm.action.value=this.value;document.editUserForm.submit();}" />
+				</div>
+
+				<c:if
+					test="${currentSession.getRoleID() == 1 && inputUser.getId() > 0 }">
+					<div class="col-md-4">
+						<input class="btn btn-danger" type="submit" value="Delete"
+							onclick="{document.editUserForm.action.value=this.value;document.editUserForm.submit();}" />
+					</div>
+				</c:if>
 			</div>
 		</form>
 	</div>

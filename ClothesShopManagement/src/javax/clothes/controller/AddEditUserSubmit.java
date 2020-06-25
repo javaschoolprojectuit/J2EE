@@ -32,6 +32,9 @@ public class AddEditUserSubmit extends HttpServlet {
 		UserDTO userdto = new UserDTO();
 		UserBO userbo = new UserBO();
 		
+		String action = request.getParameter("action");
+		
+		if(request.getParameter("id") != null ) userdto.setId(Integer.parseInt(request.getParameter("id")));
 		if(request.getParameter("fname") != null ) userdto.setFirstName(request.getParameter("fname"));
 		if(request.getParameter("lname") != null ) userdto.setLastName(request.getParameter("lname"));
 		if(request.getParameter("address") != null ) userdto.setAddress(request.getParameter("address"));
@@ -45,13 +48,27 @@ public class AddEditUserSubmit extends HttpServlet {
 		} else {
 			userdto.setRoleID(2);
 		}
-		try {
-			System.out.print(userbo.addUser(userdto));
-		} catch (Exception e) {
-			request.getRequestDispatcher("/AddEditUserForm.jsp");
+		if(action.equals("Create")) {
+			try {
+				System.out.print(userbo.addUser(userdto));
+			} catch (Exception e) {
+				request.getRequestDispatcher("/AddEditUserForm.jsp");
+			}
 		}
 		
-		request.getRequestDispatcher("/AdminUser").forward(request, response);
+		if (action.equals("Edit")) {
+			try {
+				userbo.updateUser(userdto);
+			} catch (Exception e) {
+				request.getRequestDispatcher("/AddEditUserForm.jsp");
+			}
+		}else {
+			userdto.setDeleted(true);
+			userbo.updateUser(userdto);
+		}
+		
+		
+		response.sendRedirect(request.getContextPath() + "/AdminUser");
 	}
 
 	/**

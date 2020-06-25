@@ -121,6 +121,8 @@ public class UserMapper extends DBMapper {
 	}
 
 	public boolean updateUser(UserDTO user) {
+		int convertBit = 0;
+		if (user.isDeleted()) convertBit = 1; 
 		try {
 			Statement stmt = getConnection().createStatement();
 			String fields = "";
@@ -128,7 +130,7 @@ public class UserMapper extends DBMapper {
 					 "', address='" + user.getAddress() + "', city='" + user.getCity() +
 					 "', email='" + user.getEmail() + "', phone='" + user.getPhone() +
 					 "', username='" + user.getUserName() + "', password='" + user.getPassword() +
-					 "', role_id=" + user.getRoleID() + ", deleted=" + user.isDeleted();
+					 "', role_id=" + user.getRoleID() + ", deleted=" + convertBit;
 			String sqlStr = "UPDATE USERS SET " + fields + "WHERE USER_ID = " + Integer.toString(user.getId());
 			stmt.executeUpdate(sqlStr); // Send the query to the server
 			return true;

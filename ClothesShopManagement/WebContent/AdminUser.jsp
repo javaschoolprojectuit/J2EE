@@ -53,7 +53,7 @@
 					<th>Phone</th>
 					<th>UserName</th>
 					<th>Role</th>
-					<th>Status</th>
+					<th>DELETED</th>
 				</tr>
 			</thead>
 
@@ -68,7 +68,14 @@
 						<td>${user.getPhone()}</td>
 						<td>${user.getUserName()}</td>
 						<td>${user.getRoleID()}</td>
-						<td>${user.isDeleted()}</td>
+						<c:choose>
+							<c:when test="${user.isDeleted()}">
+								<td class="text-danger text-uppercase">${user.isDeleted()}</td>
+							</c:when>
+							<c:otherwise>
+								<td class="text-success text-uppercase">${user.isDeleted()}</td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
 				</c:forEach>
 			</tbody>
