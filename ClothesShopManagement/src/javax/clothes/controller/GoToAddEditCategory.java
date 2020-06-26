@@ -1,14 +1,9 @@
 package javax.clothes.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.clothes.bo.CategoryBO;
-import javax.clothes.bo.RoleBO;
-import javax.clothes.bo.UserBO;
 import javax.clothes.dto.CategoryDTO;
-import javax.clothes.dto.RoleDTO;
-import javax.clothes.dto.UserDTO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

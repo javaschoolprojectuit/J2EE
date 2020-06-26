@@ -1,8 +1,6 @@
 package javax.clothes.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.clothes.bo.UserBO;
 import javax.clothes.dto.UserDTO;
 import javax.servlet.ServletException;

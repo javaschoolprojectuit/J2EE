@@ -64,12 +64,14 @@ public class CategoryMapper extends DBMapper {
 	}
 	
 	public boolean addCategory (CategoryDTO category) {
+		int convertBit = 0;
+		if (category.isActive()) convertBit = 1;
 		try {
 			Statement stmt = getConnection().createStatement();
 			String values = "('"+category.getName() + "','" + 
 							category.getImage() + "'," + 
-							category.isActive() + ",'" + 
-							category.getDescription() + "'," +")";
+							convertBit + ",'" + 
+							category.getDescription() +")";
 			String query = "INSERT INTO CATEGORIES (NAME,IMAGE,ACTIVE,DESCRIPTION) VALUES" + values;
 			stmt.executeUpdate(query);
 			
@@ -80,11 +82,13 @@ public class CategoryMapper extends DBMapper {
 	}
 	
 	public boolean updateCategory (CategoryDTO category) {
+		int convertBit = 0;
+		if (category.isActive()) convertBit = 1;
 		try {
 			Statement stmt = getConnection().createStatement();
 			String values = "NAME='" + category.getName() + 
 							"',IMAGE='" + category.getImage() + 
-							"',ACTIVE=" + category.isActive() + 
+							"',ACTIVE=" + convertBit + 
 							",DESCRIPTION='" + category.getDescription() + "'," +") ";
 			String query = "UPDATE INTO SET" + values + "WHERE CAT_ID=" + category.getId();
 			stmt.executeUpdate(query);

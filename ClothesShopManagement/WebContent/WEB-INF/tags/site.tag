@@ -28,6 +28,7 @@
 					</ul></li>
 				<li><a href="AdminUser">Users Management</a></li>
 				<li><a href="AdminCategory">Categories Management</a></li>
+				<li><a href="AdminProduct">Products Management</a></li>
 				<li><a href="#">Contact</a></li>
 			</ul>
 		</nav>
