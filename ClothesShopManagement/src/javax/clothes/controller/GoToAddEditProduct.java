@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 import javax.clothes.bo.CategoryBO;
 import javax.clothes.bo.ProductBO;
+import javax.clothes.bo.SupplierBO;
 import javax.clothes.dto.CategoryDTO;
 import javax.clothes.dto.ProductDTO;
+import javax.clothes.dto.SupplierDTO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,9 +50,15 @@ public class GoToAddEditProduct extends HttpServlet {
 		ArrayList<CategoryDTO> categories = new ArrayList<CategoryDTO>();
 		categories = catbo.getAllCategories();
 		
+		SupplierBO suppbo = new SupplierBO();
+		ArrayList<SupplierDTO> suppliers = new ArrayList<SupplierDTO>();
+		SupplierDTO supp = new SupplierDTO();
+		suppliers = suppbo.getSuppliersrByFilters(supp);
+		
 
 		request.setAttribute("inputProd", inputProd);
 		request.setAttribute("categories", categories);
+		request.setAttribute("suppliers", suppliers);
 		request.getRequestDispatcher("./AddEditProductForm.jsp").forward(request, response);
 	}
 

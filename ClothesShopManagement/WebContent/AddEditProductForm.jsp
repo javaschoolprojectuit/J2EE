@@ -67,20 +67,20 @@
 			</div>
 			<div class="col-md-8"></div>
 			<div class="col-md-4 py-1">
-				Supplier ID: <input type="number" name="supplier" required />
-				<!--  <select name="category">
-					<c:forEach items="${categories}" var="category">
+				Supplier ID:
+				<select name="supplier" required>
+					<c:forEach items="${suppliers}" var="supplier">
 						<c:choose>
-							<c:when test="${inputProd.getCatId() == category.getId()}">
+							<c:when test="${inputProd.getSuppId() == supplier.getId()}">
 								<c:set var="selected" value='selected="selected"' />
 							</c:when>
 							<c:otherwise>
 								<c:set var="selected" value='' />
 							</c:otherwise>
 						</c:choose>
-						<option value="${category.getId()}" <c:out value='${selected}' />>${category.getName()}</option>
+						<option value="${supplier.getId()}" <c:out value='${selected}' />>${supplier.getName()}</option>
 					</c:forEach>
-				</select> -->
+				</select>
 			</div>
 			<div class="col-md-8"></div>
 			<div class="col-md-4 py-1">

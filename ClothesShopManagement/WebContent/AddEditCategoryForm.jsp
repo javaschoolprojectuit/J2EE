@@ -27,7 +27,7 @@
 			</div>
 			<div class="col-md-8"></div>
 			<div class="col-md-4 py-1">
-				<Select name="active">
+				Active:<Select name="active">
 					<option value="true">true</option>
 					<option value="false">false</option>
 				</Select>
