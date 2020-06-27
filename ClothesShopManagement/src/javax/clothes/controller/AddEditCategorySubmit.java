@@ -47,31 +47,28 @@ public class AddEditCategorySubmit extends HttpServlet {
 			catdto.setDescription(request.getParameter("description"));
 		UploadFileUtil fileUploader = new UploadFileUtil(getServletContext());
 		catdto.setImage(fileUploader.getUploadFile(request, response));
-		try {
-			System.out.print(catbo.addCategory(catdto));
-		} catch (Exception e) {
-			request.getRequestDispatcher("/AddEditCategoryForm.jsp");
-		}
 		
-		if(action.equals("Create")) {
+		switch (action) {
+		case "Create":
 			try {
 				System.out.print(catbo.addCategory(catdto));
 			} catch (Exception e) {
 				request.getRequestDispatcher("/AddEditCategoryForm.jsp").forward(request, response);
 			}
-		}
-		
-		if (action.equals("Edit")) {
+			break;
+		case "Edit":
 			try {
 				catbo.updateCategory(catdto);
 			} catch (Exception e) {
 				request.getRequestDispatcher("/AddEditCategoryForm.jsp").forward(request, response);
 			}
-		}else {
+			break;
+		case "Delete":
 			catdto.setActive(false);
 			catbo.updateCategory(catdto);
+			break;
 		}
-
+		
 		response.sendRedirect(request.getContextPath() + "/AdminCategory");
 	}
 

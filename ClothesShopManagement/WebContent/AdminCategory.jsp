@@ -9,7 +9,7 @@
 <title>Category Management</title>
 </head>
 <t:site>
-	<a class="btn-primary" href="GoToAddEditCategory">Create</a>
+	<a class="btn btn-primary" href="GoToAddEditCategory">Create</a>
 	<table class="table table-striped">
 		<thead class="thead-dark">
 			<tr>

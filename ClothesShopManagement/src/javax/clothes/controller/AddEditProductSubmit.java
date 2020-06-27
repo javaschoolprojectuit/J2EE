@@ -57,23 +57,27 @@ public class AddEditProductSubmit extends HttpServlet {
 			request.getRequestDispatcher("/AddEditProductForm.jsp");
 		}
 		
-		if(action.equals("Create")) {
+		
+		switch (action) {
+		case "Create":
 			try {
 				System.out.print(prodbo.addProduct(proddto));
 			} catch (Exception e) {
 				request.getRequestDispatcher("/AddEditProductForm.jsp").forward(request, response);
 			}
-		}
-		
-		if (action.equals("Edit")) {
+			break;
+		case "Edit":
 			try {
 				prodbo.updateProduct(proddto);
 			} catch (Exception e) {
 				request.getRequestDispatcher("/AddEditProductForm.jsp").forward(request, response);
 			}
-		}else {
+			break;
+		case "Delete":
 			proddto.setDeleted(true);
 			prodbo.updateProduct(proddto);
+			break;
+		
 		}
 
 		response.sendRedirect(request.getContextPath() + "/AdminProduct");

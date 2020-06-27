@@ -71,7 +71,7 @@ public class CategoryMapper extends DBMapper {
 			String values = "('"+category.getName() + "','" + 
 							category.getImage() + "'," + 
 							convertBit + ",'" + 
-							category.getDescription() +")";
+							category.getDescription() +"')";
 			String query = "INSERT INTO CATEGORIES (NAME,IMAGE,ACTIVE,DESCRIPTION) VALUES" + values;
 			stmt.executeUpdate(query);
 			
