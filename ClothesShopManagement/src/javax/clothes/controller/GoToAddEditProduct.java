@@ -1,8 +1,11 @@
 package javax.clothes.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.clothes.bo.CategoryBO;
 import javax.clothes.bo.ProductBO;
+import javax.clothes.dto.CategoryDTO;
 import javax.clothes.dto.ProductDTO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,11 +40,17 @@ public class GoToAddEditProduct extends HttpServlet {
 			requestId = 0;
 		} else {
 			requestId = Integer.parseInt(request.getParameter("id"));
-			ProductBO catbo = new ProductBO();
-			inputProd = catbo.getProductByID(requestId);
+			ProductBO prodbo = new ProductBO();
+			inputProd = prodbo.getProductByID(requestId);
 		}
+		
+		CategoryBO catbo = new CategoryBO();
+		ArrayList<CategoryDTO> categories = new ArrayList<CategoryDTO>();
+		categories = catbo.getAllCategories();
+		
 
 		request.setAttribute("inputProd", inputProd);
+		request.setAttribute("categories", categories);
 		request.getRequestDispatcher("./AddEditProductForm.jsp").forward(request, response);
 	}
 

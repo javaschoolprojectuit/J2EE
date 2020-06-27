@@ -22,7 +22,7 @@
 			</div>
 			<div class="col-md-8"></div>
 			<div class="col-md-4 py-1">
-				Description:<input type="text" name="address"
+				Description:<input type="text" name="description"
 					value="${inputCat.getDescription()}" />
 			</div>
 			<div class="col-md-8"></div>
@@ -53,7 +53,7 @@
 			</div>
 
 			<c:if
-				test="${currentSession.getRoleID() == 1 && inputUser.getId() > 0 }">
+				test="${currentSession.getRoleID() == 1 && inputCat.getId() > 0 }">
 				<div class="col-md-1 float-none">
 					<input class="btn btn-danger" type="submit" value="Delete"
 						onclick="{document.editCategoryForm.action.value=this.value;document.editCategoryForm.submit();}" />

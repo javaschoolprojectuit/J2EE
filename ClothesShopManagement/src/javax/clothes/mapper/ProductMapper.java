@@ -114,6 +114,8 @@ public class ProductMapper extends DBMapper{
 	}
 	
 	public boolean updateProduct (ProductDTO product) {
+		int convertBit = 0;
+		if(product.isDeleted()) convertBit = 1;
 		try {
 			Statement stmt = getConnection().createStatement();
 			String values = "( CAT_ID=" + product.getCatId() + ",IMAGE ='" + 
@@ -122,7 +124,7 @@ public class ProductMapper extends DBMapper{
 							product.getPrice() + ",QUANTITY=" + 
 							product.getQuantity() + ",SIZE=" + 
 							product.getSize() + ",SUPPLIER_ID=" + 
-							product.getSuppId() + ", DELETED="+ product.isDeleted() +  ")"; 
+							product.getSuppId() + ", DELETED="+ convertBit +  ")"; 
 			String sql = "UPDATE PRODUCTS PRODUCTS SET" + values + "WHERE PROD_ID=" + product.getId();
 			
 			stmt.executeUpdate(sql);

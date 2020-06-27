@@ -1,6 +1,5 @@
 package javax.clothes.controller;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.clothes.bo.CategoryBO;
@@ -11,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 /**
  * Servlet implementation class AddEditCategorySubmit
@@ -47,7 +45,8 @@ public class AddEditCategorySubmit extends HttpServlet {
 			catdto.setActive((Boolean.valueOf(request.getParameter("active"))));
 		if (request.getParameter("description") != null)
 			catdto.setDescription(request.getParameter("description"));
-		catdto.setImage(getUploadFile(request, response));
+		UploadFileUtil fileUploader = new UploadFileUtil(getServletContext());
+		catdto.setImage(fileUploader.getUploadFile(request, response));
 		try {
 			System.out.print(catbo.addCategory(catdto));
 		} catch (Exception e) {
@@ -84,36 +83,6 @@ public class AddEditCategorySubmit extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-	}
-
-	protected String getUploadFile(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, java.io.IOException {
-		String filePath = getServletContext().getInitParameter("file-upload");
-		String name = "";
-		for (Part part : request.getParts()) {
-			String fileName = extractFileName(part);
-			if (!fileName.equals("")) {
-				// refines the fileName in case it is an absolute path
-				fileName = new File(fileName).getName();
-				name = fileName;
-				part.write(filePath + fileName);
-			}
-		}
-		return filePath + name;
-	}
-
-	/**
-	 * Extracts file name from HTTP header content-disposition
-	 */
-	private String extractFileName(Part part) {
-		String contentDisp = part.getHeader("content-disposition");
-		String[] items = contentDisp.split(";");
-		for (String s : items) {
-			if (s.trim().startsWith("filename")) {
-				return s.substring(s.indexOf("=") + 2, s.length() - 1);
-			}
-		}
-		return "";
 	}
 
 }

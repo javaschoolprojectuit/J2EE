@@ -1,0 +1,32 @@
+html, body {
+	margin: 0;
+	height: 100%;
+}
+
+#brand {
+	background: #7386D5;
+}
+
+#brand {
+	color: white;
+}
+
+#login, #login div {
+	height: inherit;
+}
+
+#login form {
+	align-items: center;
+	background-color: #fff;
+	border: none;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+	box-sizing: border-box;
+	padding: 20px;
+	width: 396px;
+	height:fit-content;
+}
+
+#login form input {
+	float: none;
+}
