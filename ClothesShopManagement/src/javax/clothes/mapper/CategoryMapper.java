@@ -98,7 +98,7 @@ public class CategoryMapper extends DBMapper {
 			return false;
 		}
 	}
-	
+		
 	public boolean deleteCatgory (int id) {
 		try {
 			Statement stmt = getConnection().createStatement();

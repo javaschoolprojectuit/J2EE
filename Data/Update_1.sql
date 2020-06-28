@@ -1,0 +1,9 @@
+USE Store;
+
+go
+
+ALTER TABLE CATEGORIES
+ALTER COLUMN image varchar(MAX);
+
+ALTER TABLE USERS
+ALTER COLUMN email varchar(50);

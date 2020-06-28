@@ -36,27 +36,34 @@ public class AdminProduct extends HttpServlet {
 		String priceOrder = "", sizeOrder = "", quantityOrder = "";
 		ArrayList<ProductDTO> prodList = new ArrayList<ProductDTO>();
 
-		if (request.getParameter("name") != null)
-			prodinput.setName(request.getParameter("name"));
-		if (request.getParameter("catid") != null)
-			prodinput.setCatId(Integer.parseInt(request.getParameter("catid")));
-		if (request.getParameter("suppid") != null)
-			prodinput.setSuppId(Integer.parseInt(request.getParameter("suppid")));
-		if (request.getParameter("priceorder") != null && request.getParameter("price") != null) {
-			priceOrder = request.getParameter("priceorder");
-			prodinput.setPrice(Integer.parseInt(request.getParameter("price")));
-		}
-		if (request.getParameter("sizeorder") != null && request.getParameter("size") != null) {
-			sizeOrder = request.getParameter("sizeorder");
-			prodinput.setSize(Integer.parseInt(request.getParameter("size")));
-		}
-		if (request.getParameter("quantityorder") != null && request.getParameter("quantity") != null) {
-			quantityOrder = request.getParameter("quantityorder");
-			prodinput.setQuantity(Integer.parseInt(request.getParameter("quantity")));
-		}
+		if (request.getParameter("id") != null) {
+			prodinput.setId(Integer.parseInt(request.getParameter("id")));
+			ProductBO userbo = new ProductBO();
+			prodList.add(userbo.getProductByID(prodinput.getId()));
+		} else {
+			if (request.getParameter("name") != null)
+				prodinput.setName(request.getParameter("name"));
+			if (request.getParameter("catid") != null)
+				prodinput.setCatId(Integer.parseInt(request.getParameter("catid")));
+			if (request.getParameter("suppid") != null)
+				prodinput.setSuppId(Integer.parseInt(request.getParameter("suppid")));
+			if (request.getParameter("priceorder") != null && request.getParameter("price") != null) {
+				priceOrder = request.getParameter("priceorder");
+				prodinput.setPrice(Integer.parseInt(request.getParameter("price")));
+			}
+			if (request.getParameter("sizeorder") != null && request.getParameter("size") != null) {
+				sizeOrder = request.getParameter("sizeorder");
+				prodinput.setSize(Integer.parseInt(request.getParameter("size")));
+			}
+			if (request.getParameter("quantityorder") != null && request.getParameter("quantity") != null) {
+				quantityOrder = request.getParameter("quantityorder");
+				prodinput.setQuantity(Integer.parseInt(request.getParameter("quantity")));
+			}
 
-		ProductBO userbo = new ProductBO();
-		prodList = userbo.getProductByFilters(prodinput, priceOrder, sizeOrder, quantityOrder);
+			ProductBO userbo = new ProductBO();
+			prodList = userbo.getProductByFilters(prodinput, priceOrder, sizeOrder, quantityOrder);
+		}
+		
 		request.setAttribute("products", prodList);
 		request.getRequestDispatcher("/AdminProduct.jsp").forward(request, response);
 	}

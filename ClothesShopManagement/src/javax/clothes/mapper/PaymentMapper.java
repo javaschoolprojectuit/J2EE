@@ -28,11 +28,13 @@ public class PaymentMapper extends DBMapper {
 	
 	public ArrayList<PaymentDTO> getPaymenstByFilters (PaymentDTO payment) {
 		ArrayList<PaymentDTO> payments = new ArrayList<PaymentDTO>();
+		int convertBit = payment.isActive() ? 1 : 0;
+	
 		try {
 			Statement stmt = getConnection().createStatement();
 			String sql = "SELECT * FROM PAYMENTS WHERE " + 
 						 "TYPE LIKE '%" + payment.getType() + "%' AND " +
-						 "ACTIVE = ISNULL(" + payment.isActive() + ",ACTIVE)";
+						 "ACTIVE = ISNULL(" + convertBit + ",ACTIVE)";
 			
 			ResultSet rs = stmt.executeQuery(sql);
 			

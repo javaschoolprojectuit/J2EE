@@ -27,7 +27,7 @@
 					<tr>
 						<td><a href="GoToAddEditCategory?id=${category.getId()}">${category.getId()}</a></td>
 						<td>${category.getName()}</td>
-						<td>${category.getImage()}</td>
+						<td><img src="${category.getImage()}" alt="${category.getImage()}"></td>
 						<td>${category.isActive()}</td>
 						<td>${category.getDescription()}</td>
 					</tr>

@@ -37,8 +37,8 @@ public class OrderMapper extends DBMapper {
 	public ArrayList<OrderDTO> getOrdersByFilters(OrderDTO order) {
 		ArrayList<OrderDTO> orders = new ArrayList<OrderDTO>();
 		try {
-			String paymentId = Integer.toString(order.getPaymentid());
-			String userId = Integer.toString(order.getUserid());
+			String paymentId = order.getPaymentid() > 0 ? Integer.toString(order.getPaymentid()) : "null";
+			String userId = order.getUserid() > 0 ? Integer.toString(order.getUserid()) : "null";
 			Statement stmt = getConnection().createStatement();
 			String sql = "SELECT * FROM ORDERS WHERE " + "NUMBER LIKE '%" + order.getNumber() + "%' AND " + 
 						  "PAYMENT_ID = ISNULL(" + paymentId + ",PAYMENT_ID)" +  

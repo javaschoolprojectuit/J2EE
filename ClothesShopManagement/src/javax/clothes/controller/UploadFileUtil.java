@@ -10,6 +10,7 @@ import javax.servlet.http.Part;
 
 public final class UploadFileUtil {
 	private ServletContext context;
+	static final String serverpath = "images\\";
 	public UploadFileUtil (ServletContext context) {
 		this.context = context;
 	}
@@ -26,7 +27,8 @@ public final class UploadFileUtil {
 				part.write(filePath + fileName);
 			}
 		}
-		return filePath + name;
+		
+		return serverpath + name;
 	}
 
 	/**

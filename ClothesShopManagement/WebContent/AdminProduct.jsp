@@ -43,7 +43,14 @@
 							<option value="=">equals</option>
 							<option value=">=">Higher than</option>
 							<option value="<=">Lower than</option>
-						</select> <input type="text" pattern="[0-9]" name="size" />
+						</select> <Select name="size">
+							<option value="68">XS</option>
+							<option value="72">S</option>
+							<option value="76">M</option>
+							<option value="80">L</option>
+							<option value="84">XL</option>
+							<option value="88">XXL</option>
+						</Select>
 					</div>
 					<div class="col-md-12 py-1">
 						Quantity <select class="mx-1" name="quantityorder">
@@ -60,7 +67,7 @@
 		</form>
 		<hr>
 		<h4 class="my-2">Action</h4>
-		<a class="btn btn-primary" href="GoToAddEditUser">Create</a>
+		<a class="btn btn-primary" href="GoToAddEditProduct">Create</a>
 		<hr>
 		<table class="table table-striped">
 			<thead class="thead-dark">
