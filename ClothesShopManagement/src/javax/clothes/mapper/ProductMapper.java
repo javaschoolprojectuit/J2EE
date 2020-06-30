@@ -62,6 +62,13 @@ public class ProductMapper extends DBMapper{
 	public ArrayList<ProductDTO> getProductsByFilters (ProductDTO product, String priceOrder, String sizeOrder, String quanOrder) {
 		ArrayList<ProductDTO> products = new ArrayList<ProductDTO>();
 		String sizeSql = "", priceSql = "",quanSql = "";
+		String catID="null", suppID="null";
+		if (product.getCatId() > 0 ) {
+			catID = Integer.toString(product.getCatId());
+		}
+		if (product.getSuppId() > 0) {
+			suppID = Integer.toString(product.getSuppId());
+		}
 		if (!priceOrder.equals("")) {
 			priceSql = " AND PRICE " + priceOrder + product.getPrice();
 		}
@@ -76,8 +83,8 @@ public class ProductMapper extends DBMapper{
 			
 			String sql = "SELECT * FROM PRODUCTS WHERE " + 
 						 "NAME LIKE '%" + product.getName() + "%' AND " + 
-						 "CAT_ID = ISNULL(" + product.getCatId() + ",CAT_ID) AND " +
-						 "SUPPLIER_ID = ISNULL(" + product.getSuppId() + ",SUPPLIER_ID)" + 
+						 "CAT_ID = ISNULL(" + catID + ",CAT_ID) AND " +
+						 "SUPPLIER_ID = ISNULL(" + suppID + ",SUPPLIER_ID)" + 
 						 priceSql + sizeSql + quanSql;
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs != null && rs.next()) {
@@ -114,6 +121,8 @@ public class ProductMapper extends DBMapper{
 	}
 	
 	public boolean updateProduct (ProductDTO product) {
+		int convertBit = 0;
+		if(product.isDeleted()) convertBit = 1;
 		try {
 			Statement stmt = getConnection().createStatement();
 			String values = "( CAT_ID=" + product.getCatId() + ",IMAGE ='" + 
@@ -122,7 +131,7 @@ public class ProductMapper extends DBMapper{
 							product.getPrice() + ",QUANTITY=" + 
 							product.getQuantity() + ",SIZE=" + 
 							product.getSize() + ",SUPPLIER_ID=" + 
-							product.getSuppId() + ", DELETED="+ product.isDeleted() +  ")"; 
+							product.getSuppId() + ", DELETED="+ convertBit +  ")"; 
 			String sql = "UPDATE PRODUCTS PRODUCTS SET" + values + "WHERE PROD_ID=" + product.getId();
 			
 			stmt.executeUpdate(sql);

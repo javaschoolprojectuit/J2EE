@@ -91,7 +91,7 @@
 				<c:if test="${inputUser.getId() > 0}">
 					<c:set var="act" value="Edit" />
 				</c:if>
-				<div class="col-md-4">
+				<div class="col-md-1 float-none">
 					<input class="btn btn-primary" type="submit"
 						value="<c:out value='${act}' />"
 						onclick="{document.editUserForm.action.value=this.value;document.editUserForm.submit();}" />
@@ -99,7 +99,7 @@
 
 				<c:if
 					test="${currentSession.getRoleID() == 1 && inputUser.getId() > 0 }">
-					<div class="col-md-4">
+					<div class="col-md-1 float-none">
 						<input class="btn btn-danger" type="submit" value="Delete"
 							onclick="{document.editUserForm.action.value=this.value;document.editUserForm.submit();}" />
 					</div>

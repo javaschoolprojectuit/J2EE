@@ -59,24 +59,26 @@
 
 			<tbody>
 				<c:forEach items="${users}" var="user">
-					<tr>
-						<td><a href="GoToAddEditUser?id=${user.getId()}">${user.getId()}</a></td>
-						<td>${user.getFirstName()}</td>
-						<td>${user.getLastName()}</td>
-						<td>${user.getCity()}</td>
-						<td>${user.getEmail()}</td>
-						<td>${user.getPhone()}</td>
-						<td>${user.getUserName()}</td>
-						<td>${user.getRoleID()}</td>
-						<c:choose>
-							<c:when test="${user.isDeleted()}">
-								<td class="text-danger text-uppercase">${user.isDeleted()}</td>
-							</c:when>
-							<c:otherwise>
-								<td class="text-success text-uppercase">${user.isDeleted()}</td>
-							</c:otherwise>
-						</c:choose>
-					</tr>
+					<c:if test="${!user.isDeleted()}">
+						<tr>
+							<td><a href="GoToAddEditUser?id=${user.getId()}">${user.getId()}</a></td>
+							<td>${user.getFirstName()}</td>
+							<td>${user.getLastName()}</td>
+							<td>${user.getCity()}</td>
+							<td>${user.getEmail()}</td>
+							<td>${user.getPhone()}</td>
+							<td>${user.getUserName()}</td>
+							<td>${user.getRoleID()}</td>
+							<c:choose>
+								<c:when test="${user.isDeleted()}">
+									<td class="text-danger text-uppercase">${user.isDeleted()}</td>
+								</c:when>
+								<c:otherwise>
+									<td class="text-success text-uppercase">${user.isDeleted()}</td>
+								</c:otherwise>
+							</c:choose>
+						</tr>
+					</c:if>
 				</c:forEach>
 			</tbody>
 		</table>
