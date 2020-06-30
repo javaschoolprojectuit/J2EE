@@ -69,7 +69,4 @@
 	</table>
 	</div>
 </t:site>
-<t:site>
-	
-</t:site>
 </html>
