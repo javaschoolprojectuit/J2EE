@@ -55,6 +55,24 @@ public class OrderMapper extends DBMapper {
 		}
 		return orders;
 	}
+	
+	public ArrayList<OrderDTO> getOrdersByOrderDate(String start, String end) {
+		ArrayList<OrderDTO> orders = new ArrayList<OrderDTO>();
+		try {
+			Statement stmt = getConnection().createStatement();
+			String sql = "SELECT * FROM ORDERS WHERE " + "ORDERDATE BETWEEN '" + start + "' AND " + 
+						  "'" + end + "'" + "ORDER BY ORDERDATE";
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs != null && rs.next()) {
+				OrderDTO temp = new OrderDTO();
+				temp = resultSetMapping(rs);
+				orders.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return orders;
+	}
 
 	public OrderDTO getOrderById(int id) {
 		OrderDTO order = new OrderDTO();
