@@ -3,10 +3,10 @@ package javax.clothes.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.clothes.bo.OrderBO;
+import javax.clothes.bo.OrderDetailBO;
 import javax.clothes.dto.OrderDTO;
 import javax.clothes.dto.OrderDetailDTO;
-import javax.clothes.mapper.OrderDetailMapper;
-import javax.clothes.mapper.OrderMapper;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,8 +46,8 @@ public class AdminShowChart extends HttpServlet {
 		ArrayList<OrderDTO> orders = new ArrayList<OrderDTO>();
 
 		try {
-			OrderMapper orderbo = new OrderMapper();
-			OrderDetailMapper orderdetails = new OrderDetailMapper();
+			OrderBO orderbo = new OrderBO();
+			OrderDetailBO orderdetails = new OrderDetailBO();
 			orders = orderbo.getOrdersByOrderDate("20200601", "20200630");
 
 			orders.forEach((order) -> {
