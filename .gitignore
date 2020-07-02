@@ -2,3 +2,6 @@
 .metadata
 /ClothesShopManagement/.settings
 /ClothesShopManagement/build
+/ClothesShopManagement/resources
+/ClothesShopManagement/.classpath
+/ClothesShopManagement/resources/config.properties
