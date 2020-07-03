@@ -44,11 +44,19 @@ public class AdminShowChart extends HttpServlet {
 			throws ServletException, IOException {
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		ArrayList<OrderDTO> orders = new ArrayList<OrderDTO>();
-
+		String start = "", end ="";
+		try {
+			start = request.getSession().getAttribute("start").toString();
+			end = request.getSession().getAttribute("end").toString();
+		} catch (Exception e) {
+			start = "20200601";
+			end = "20200630";
+		}
+		System.out.print(start);
 		try {
 			OrderBO orderbo = new OrderBO();
 			OrderDetailBO orderdetails = new OrderDetailBO();
-			orders = orderbo.getOrdersByOrderDate("20200601", "20200630");
+			orders = orderbo.getOrdersByOrderDate(start, end);
 
 			orders.forEach((order) -> {
 				int sum = 0;
@@ -62,8 +70,8 @@ public class AdminShowChart extends HttpServlet {
 			e1.printStackTrace();
 		}
 
-		JFreeChart chart = ChartFactory.createLineChart("Orders", "Sum", "Date", dataset,
-				PlotOrientation.VERTICAL, true, true, false);
+		JFreeChart chart = ChartFactory.createLineChart("Orders", "Date", "Sum", dataset, PlotOrientation.VERTICAL,
+				true, true, false);
 
 		try {
 

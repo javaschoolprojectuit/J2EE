@@ -10,7 +10,7 @@
 </head>
 <t:site>
 	<div id="edit-user">
-		<form name="editUserForm" method="post" action="AddEditUserSubmit">
+		<form name="editUserForm" method="post" onSubmit="return validateProductForm(event);" action="AddEditUserSubmit">
 			<div class="row">
 				<div class="col-md-4 py-1">
 					${inputUser.getId()}<input type="hidden" name="id"
@@ -94,14 +94,14 @@
 				<div class="col-md-1 float-none">
 					<input class="btn btn-primary" type="submit"
 						value="<c:out value='${act}' />"
-						onclick="{document.editUserForm.action.value=this.value;document.editUserForm.submit();}" />
+						onclick="{document.editUserForm.action.value=this.value;}" />
 				</div>
 
 				<c:if
 					test="${currentSession.getRoleID() == 1 && inputUser.getId() > 0 }">
 					<div class="col-md-1 float-none">
 						<input class="btn btn-danger" type="submit" value="Delete"
-							onclick="{document.editUserForm.action.value=this.value;document.editUserForm.submit();}" />
+							onclick="{document.editUserForm.action.value=this.value;}" />
 					</div>
 				</c:if>
 			</div>

@@ -13,10 +13,10 @@
 		<form method="post" action="AdminProduct">
 			<div class="row">
 				<div class="col-md-4 py-1">
-					Name:<input class="ml-1" type="text" name="name" />
+					Name:<input class="ml-1 form-control" type="text" name="name" />
 				</div>
 				<div class="col-md-4 py-1">
-					Id:<input class="ml-1" type="text" name="id" />
+					Id:<input class="ml-1 form-control" pattern="[0-9]+" type="text" name="id" />
 				</div>
 				<div class="col-md-4"></div>
 				<div class="col-md-3 py-1">
@@ -26,38 +26,62 @@
 				<div class="col-md-9 py-1"></div>
 				<div id="advance-search" class="collapse">
 					<div class="col-md-12 py-1">
-						Category ID:<input class="ml-1" type="text" name="catid" />
+						Category ID:<input class="ml-1 form-control" pattern="[0-9]+" type="text" name="catid" />
 					</div>
 					<div class="col-md-12 py-1">
-						Supplier ID:<input class="ml-1" type="text" name="suppid" />
+						Supplier ID:<input class="ml-1 form-control" pattern="[0-9]+" type="text" name="suppid" />
 					</div>
 					<div class="col-md-12 py-1">
-						Price <select class="mx-1" name="priceorder">
-							<option value="=">equals</option>
-							<option value=">=">Higher than</option>
-							<option value="<=">Lower than</option>
-						</select> <input type="text" pattern="[0-9]" name="price" />
+						<div class="row">
+							<div class="col-md-6">
+							Price 
+							<select class="mx-1 form-control" name="priceorder">
+								<option value="=">equals</option>
+								<option value=">=">Higher than</option>
+								<option value="<=">Lower than</option>
+							</select>
+							</div> 
+							<div class="col-md-6">
+								<input class="form-control mt-4" type="text" pattern="[0-9]+" name="price" />
+							</div>
+						</div>
 					</div>
 					<div class="col-md-12 py-1">
-						Size <select class="mx-1" name="sizeorder">
-							<option value="=">equals</option>
-							<option value=">=">Higher than</option>
-							<option value="<=">Lower than</option>
-						</select> <Select name="size">
-							<option value="68">XS</option>
-							<option value="72">S</option>
-							<option value="76">M</option>
-							<option value="80">L</option>
-							<option value="84">XL</option>
-							<option value="88">XXL</option>
-						</Select>
+					<div class="row">
+						<div class="col-md-6">
+							Size 
+							<select class="mx-1 form-control" name="sizeorder">
+								<option value="=">equals</option>
+								<option value=">=">Higher than</option>
+								<option value="<=">Lower than</option>
+							</select> 
+						</div>
+						<div class="col-md-6">
+							<Select class="form-control mt-4" name="size">
+								<option value="68">XS</option>
+								<option value="72">S</option>
+								<option value="76">M</option>
+								<option value="80">L</option>
+								<option value="84">XL</option>
+								<option value="88">XXL</option>
+							</Select>
+						</div>
+						</div>
 					</div>
 					<div class="col-md-12 py-1">
-						Quantity <select class="mx-1" name="quantityorder">
-							<option value="=">equals</option>
-							<option value=">=">Higher than</option>
-							<option value="<=">Lower than</option>
-						</select> <input type="text" pattern="[0-9]" name="quantity" />
+						<div class="row">
+							<div class="col-md-6">
+								Quantity 
+								<select class="mx-1 form-control" name="quantityorder">
+									<option value="=">equals</option>
+									<option value=">=">Higher than</option>
+									<option value="<=">Lower than</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<input class="form-control mt-4" type="text" pattern="[0-9]+" name="quantity" />
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-12 py-1">

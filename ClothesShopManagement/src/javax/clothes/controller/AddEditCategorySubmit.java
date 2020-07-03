@@ -45,9 +45,12 @@ public class AddEditCategorySubmit extends HttpServlet {
 			catdto.setActive((Boolean.valueOf(request.getParameter("active"))));
 		if (request.getParameter("description") != null)
 			catdto.setDescription(request.getParameter("description"));
-		UploadFileUtil fileUploader = new UploadFileUtil(getServletContext());
-		catdto.setImage(fileUploader.getUploadFile(request, response));
-		
+		// add new image
+		if (request.getParameter("image") != null && request.getParameter("image").equals("")) {
+			UploadFileUtil fileUploader = new UploadFileUtil(getServletContext());
+			catdto.setImage(fileUploader.getUploadFile(request, response));
+		}
+
 		switch (action) {
 		case "Create":
 			try {
@@ -58,17 +61,23 @@ public class AddEditCategorySubmit extends HttpServlet {
 			break;
 		case "Edit":
 			try {
+				UploadFileUtil fileUploader = new UploadFileUtil(getServletContext());
+				String path = fileUploader.getUploadFile(request, response);
+				if (!path.equals(request.getParameter("image")) && !path.equals(fileUploader.serverpath)) {
+					catdto.setImage(path);
+				}
 				catbo.updateCategory(catdto);
 			} catch (Exception e) {
 				request.getRequestDispatcher("/AddEditCategoryForm.jsp").forward(request, response);
 			}
 			break;
 		case "Delete":
+			catdto.setImage(request.getParameter("image"));
 			catdto.setActive(false);
 			catbo.updateCategory(catdto);
 			break;
 		}
-		
+
 		response.sendRedirect(request.getContextPath() + "/AdminCategory");
 	}
 

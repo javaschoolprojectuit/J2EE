@@ -86,11 +86,11 @@ public class CategoryMapper extends DBMapper {
 		if (category.isActive()) convertBit = 1;
 		try {
 			Statement stmt = getConnection().createStatement();
-			String values = "NAME='" + category.getName() + 
+			String values = " NAME='" + category.getName() + 
 							"',IMAGE='" + category.getImage() + 
 							"',ACTIVE=" + convertBit + 
-							",DESCRIPTION='" + category.getDescription() + "'," +") ";
-			String query = "UPDATE INTO SET" + values + "WHERE CAT_ID=" + category.getId();
+							",DESCRIPTION='" + category.getDescription() + "' ";
+			String query = "UPDATE CATEGORIES SET" + values + "WHERE CAT_ID=" + category.getId();
 			stmt.executeUpdate(query);
 			
 			return true;
