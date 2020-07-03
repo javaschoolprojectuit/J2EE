@@ -13,25 +13,25 @@
 		<form method="post" action="AdminUser">
 			<div class="row">
 				<div class="col-md-4 py-1">
-					First name:<input type="text" name="fname" />
+					First name:<input class="form-control" type="text" name="fname" />
 				</div>
 				<div class="col-md-4 py-1">
-					Last name:<input type="text" name="lname" />
+					Last name:<input class="form-control" type="text" name="lname" />
 				</div>
 				<div class="col-md-4 py-1">
-					Address:<input type="text" name="address" />
+					Address:<input class="form-control" type="text" name="address" />
 				</div>
 				<div class="col-md-4 py-1">
-					City:<input type="text" name="city" />
+					City:<input class="form-control" type="text" name="city" />
 				</div>
 				<div class="col-md-4 py-1">
-					Phone:<input type="text" name="phone" />
+					Phone:<input class="form-control" type="text" name="phone" />
 				</div>
 				<div class="col-md-4 py-1">
-					Email:<input type="text" name="email" />
+					Email:<input class="form-control" type="text" name="email" />
 				</div>
 				<div class="col-md-4 py-1">
-					Username:<input type="text" name="username" />
+					Username:<input class="form-control" type="text" name="username" />
 				</div>
 				<div class="col-md-12 py-1">
 					<input class="btn btn-primary" type="submit" value="submit" />

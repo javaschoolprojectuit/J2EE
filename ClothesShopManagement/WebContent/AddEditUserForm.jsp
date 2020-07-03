@@ -10,45 +10,46 @@
 </head>
 <t:site>
 	<div id="edit-user">
+		<h1>Personal information</h1>
 		<form name="editUserForm" method="post" onSubmit="return validateProductForm(event);" action="AddEditUserSubmit">
 			<div class="row">
 				<div class="col-md-4 py-1">
-					${inputUser.getId()}<input type="hidden" name="id"
+					<input type="hidden" name="id"
 						value="${inputUser.getId()}" />
 				</div>
 				<div class="col-md-8"></div>
 				<div class="col-md-4 py-1">
-					First name:<input type="text" name="fname"
+					First name:<input type="text" class="form-control" name="fname"
 						value="${inputUser.getFirstName()}" width="30" required />
 				</div>
 				<div class="col-md-8"></div>
 				<div class="col-md-4 py-1">
-					Last name:<input type="text" name="lname"
+					Last name:<input type="text" class="form-control" name="lname"
 						value="${inputUser.getLastName()}" width="30" required />
 				</div>
 				<div class="col-md-8"></div>
 				<div class="col-md-4 py-1">
-					Address:<input type="text" name="address"
+					Address:<input type="text" class="form-control" name="address"
 						value="${inputUser.getAddress()}" width="30" required />
 				</div>
 				<div class="col-md-8"></div>
 				<div class="col-md-4 py-1">
-					City:<input type="text" name="city" value="${inputUser.getCity()}"
+					City:<input type="text" class="form-control" name="city" value="${inputUser.getCity()}"
 						width="30" required />
 				</div>
 				<div class="col-md-8"></div>
 				<div class="col-md-4 py-1">
-					Phone:<input type="text" name="phone"
+					Phone:<input type="text" class="form-control" name="phone"
 						value="${inputUser.getPhone()}" width="30" required />
 				</div>
 				<div class="col-md-8"></div>
 				<div class="col-md-4 py-1">
-					Email:<input type="email" name="email"
+					Email:<input type="email" class="form-control" name="email"
 						value="${inputUser.getEmail()}" width="30" required />
 				</div>
 				<div class="col-md-8"></div>
 				<div class="col-md-4 py-1">
-					Username:<input type="text" name="username"
+					Username:<input type="text" class="form-control" name="username"
 						value="${inputUser.getUserName()}" width="30" required />
 				</div>
 				<div class="col-md-8"></div>
@@ -57,20 +58,20 @@
 					<c:set var="type" value='type="text"' />
 				</c:if>
 				<div class="col-md-4 py-1">
-					Password:<input id="password" <c:out value='${type}' />
+					Password:<input class="form-control" id="password" <c:out value='${type}' />
 						name="password" value="${inputUser.getPassword()}" width="30"
 						required />
 				</div>
 				<div class="col-md-8"></div>
 				<div class="col-md-4 py-1">
-					Confirm password: <input id="confirm_password" type="password"
+					Confirm password: <input class="form-control" id="confirm_password" type="password"
 						width="30" required>
 				</div>
 				<div class="col-md-8"></div>
 				<div class="col-md-4 py-1">
 					<c:if test="${currentSession.getRoleID() == 1}">
 						Role:
-						<Select name="role">
+						<Select name="role" class="form-control">
 							<c:forEach items="${roles}" var="role">
 								<c:choose>
 									<c:when test="${inputUser.getRoleID() == role.getId()}">
