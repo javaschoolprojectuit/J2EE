@@ -8,7 +8,7 @@ import javax.clothes.dto.SupplierDTO;
 import javax.clothes.mapper.SupplierMapper;
 
 public class SupplierBO {
-	public ArrayList<SupplierDTO> getSuppliersrByFilters(SupplierDTO input) {
+	public ArrayList<SupplierDTO> getSuppliersByFilters(SupplierDTO input) {
 		ArrayList<SupplierDTO> suppliers = null;
 		SupplierMapper mapper = null;
 		try {
