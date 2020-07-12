@@ -53,7 +53,7 @@ public class GoToAddEditProduct extends HttpServlet {
 		SupplierBO suppbo = new SupplierBO();
 		ArrayList<SupplierDTO> suppliers = new ArrayList<SupplierDTO>();
 		SupplierDTO supp = new SupplierDTO();
-		suppliers = suppbo.getSuppliersrByFilters(supp);
+		suppliers = suppbo.getSuppliersByFilters(supp);
 		
 
 		request.setAttribute("inputProd", inputProd);

@@ -44,7 +44,7 @@ public class SupplierBO {
 		return supplier;
 	}
 
-	public void addSupplier(SupplierDTO input) {
+	public boolean addSupplier(SupplierDTO input) {
 		SupplierMapper mapper = null;
 		try {
 			mapper = new SupplierMapper();
@@ -58,6 +58,7 @@ public class SupplierBO {
 				Logger.getLogger(SupplierBO.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		}
+		return true;
 	}
 
 	public void updateSupplier(SupplierDTO input) {
