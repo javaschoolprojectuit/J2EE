@@ -26,6 +26,24 @@ public class OrderBO {
 		return cats;
 	}
 	
+	public ArrayList<OrderDTO> getOrdersByOrderDate(String start, String end) {
+		ArrayList<OrderDTO> cats = null;
+		OrderMapper mapper = null;
+		try {
+			mapper = new OrderMapper();
+			cats = mapper.getOrdersByOrderDate(start, end);
+		} catch (Exception ex) {
+			Logger.getLogger(UserBO.class.getName()).log(Level.SEVERE, null, ex);
+		} finally {
+			try {
+				mapper.closeConnection();
+			} catch (Exception ex) {
+				Logger.getLogger(UserBO.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+		return cats;
+	}
+	
 	public OrderDTO getOrderByID(int id) {
 		OrderDTO cat = new OrderDTO();
 		OrderMapper mapper = null;

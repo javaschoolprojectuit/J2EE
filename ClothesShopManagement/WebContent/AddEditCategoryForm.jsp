@@ -9,7 +9,7 @@
 <title>User Profile</title>
 </head>
 <t:site>
-	<form method="post" name="editCategoryForm" action="AddEditCategorySubmit"
+	<form method="post" name="editCategoryForm" onSubmit="return validateProductForm(event);" action="AddEditCategorySubmit"
 		enctype="multipart/form-data">
 		<div id="edit-category" class="row">
 			<div class="col-md-4 py-1">
@@ -37,6 +37,8 @@
 				<p>Current image: ${inputCat.getImage()}</p>
 				<p>
 					<img src="${inputCat.getImage()}" alt="image" />
+					<input type="hidden" name="image"
+					value="${inputCat.getImage()}" />
 				</p>
 				<input type="file" name="file" size="50" />
 			</div>
@@ -49,17 +51,18 @@
 			<div class="col-md-1 float-none">
 				<input class="btn btn-primary" type="submit"
 					value="<c:out value='${act}' />"
-					onclick="{document.editCategoryForm.action.value=this.value;document.editCategoryForm.submit();}" />
+					onclick="{document.editCategoryForm.action.value=this.value;}" />
 			</div>
 
 			<c:if
 				test="${currentSession.getRoleID() == 1 && inputCat.getId() > 0 }">
 				<div class="col-md-1 float-none">
 					<input class="btn btn-danger" type="submit" value="Delete"
-						onclick="{document.editCategoryForm.action.value=this.value;document.editCategoryForm.submit();}" />
+						onclick="{document.editCategoryForm.action.value=this.value;}" />
 				</div>
 			</c:if>
 		</div>
 	</form>
 </t:site>
+	<script src="client/script/categoryForm.js"></script>
 </html>

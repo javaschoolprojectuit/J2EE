@@ -15,7 +15,7 @@
 			<li><a href="AdminCategory">Categories Management</a></li>
 			<li><a href="AdminProduct">Products Management</a></li>
 		</ul>
-		<div class="container col-sm-4 col-md-7 col-lg-4 mt-5">
+		<div class="container col-md-7 mt-5">
 			<div class="card">
 				<h3 class="card-header" id="monthAndYear"></h3>
 				<table class="table table-bordered table-responsive-sm"

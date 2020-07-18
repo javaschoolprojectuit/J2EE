@@ -36,26 +36,26 @@ public class AdminProduct extends HttpServlet {
 		String priceOrder = "", sizeOrder = "", quantityOrder = "";
 		ArrayList<ProductDTO> prodList = new ArrayList<ProductDTO>();
 
-		if (request.getParameter("id") != null) {
+		if (request.getParameter("id") != null && !request.getParameter("id").equals("")) {
 			prodinput.setId(Integer.parseInt(request.getParameter("id")));
 			ProductBO userbo = new ProductBO();
 			prodList.add(userbo.getProductByID(prodinput.getId()));
 		} else {
 			if (request.getParameter("name") != null)
 				prodinput.setName(request.getParameter("name"));
-			if (request.getParameter("catid") != null)
+			if (request.getParameter("catid") != null && !request.getParameter("catid").equals(""))
 				prodinput.setCatId(Integer.parseInt(request.getParameter("catid")));
-			if (request.getParameter("suppid") != null)
+			if (request.getParameter("suppid") != null && !request.getParameter("suppid").equals(""))
 				prodinput.setSuppId(Integer.parseInt(request.getParameter("suppid")));
-			if (request.getParameter("priceorder") != null && request.getParameter("price") != null) {
+			if (request.getParameter("priceorder") != null && request.getParameter("price") != null && !request.getParameter("price").equals("")) {
 				priceOrder = request.getParameter("priceorder");
 				prodinput.setPrice(Integer.parseInt(request.getParameter("price")));
 			}
-			if (request.getParameter("sizeorder") != null && request.getParameter("size") != null) {
+			if (request.getParameter("sizeorder") != null && request.getParameter("size") != null && !request.getParameter("size").equals("")) {
 				sizeOrder = request.getParameter("sizeorder");
 				prodinput.setSize(Integer.parseInt(request.getParameter("size")));
 			}
-			if (request.getParameter("quantityorder") != null && request.getParameter("quantity") != null) {
+			if (request.getParameter("quantityorder") != null && request.getParameter("quantity") != null && !request.getParameter("quantity").equals("")) {
 				quantityOrder = request.getParameter("quantityorder");
 				prodinput.setQuantity(Integer.parseInt(request.getParameter("quantity")));
 			}
