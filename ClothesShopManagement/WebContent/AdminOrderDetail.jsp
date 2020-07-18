@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Order Management</title>
+<title>Order Detail Management</title>
 </head>
 <t:site>
 	<div id="order-list">
@@ -49,8 +49,5 @@
 		</tbody>
 	</table>
 	</div>
-</t:site>
-<t:site>
-	
 </t:site>
 </html>

@@ -34,12 +34,9 @@ public class AdminOrder extends HttpServlet {
 		OrderDTO orderinput = new OrderDTO();
 		ArrayList<OrderDTO> orderList = new ArrayList<OrderDTO>();
 		if(request.getParameter("number") != null ) orderinput.setNumber(request.getParameter("number"));
-		if(request.getParameter("orderDate") != null ) orderinput.setOrderDate(request.getParameter("orderDate"));
-		if(request.getParameter("shippingDate") != null ) orderinput.setShippingDate(request.getParameter("shippingDate"));
-		if(request.getParameter("tax") != null ) orderinput.setTax(Integer.parseInt(request.getParameter("tax")));
 		if(request.getParameter("status") != null ) orderinput.setStatus(request.getParameter("status"));
 		if(request.getParameter("paymentId") != null ) orderinput.setPaymentid(Integer.parseInt(request.getParameter("paymentId")));
-		if(request.getParameter("paymentDate") != null ) orderinput.setPaymentDate(request.getParameter("paymentDate"));
+		if(request.getParameter("userId") != null ) orderinput.setPaymentid(Integer.parseInt(request.getParameter("userId")));
 		
 		OrderBO orderbo = new OrderBO();
 		orderList = orderbo.getOrdersByFilters(orderinput);

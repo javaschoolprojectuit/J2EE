@@ -30,6 +30,7 @@
 				<li><a href="AdminCategory">Categories Management</a></li>
 				<li><a href="AdminProduct">Products Management</a></li>
 				<li><a href="AdminOrder">Orders Management</a></li>
+				<li><a href="AdminSupplier">Suppliers Management</a>
 				<li><a href="AdminRecovery">Recover Data</a></li>
 				<li><a href="#">Contact</a></li>
 			</ul>

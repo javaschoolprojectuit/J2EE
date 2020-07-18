@@ -16,22 +16,13 @@
 					Number:<input type="text" name="number" />
 				</div>
 				<div class="col-md-4 py-1">
-					Order Date:<input type="text" name="orderDate" />
-				</div>
-				<div class="col-md-4 py-1">
-					Shipping Date:<input type="text" name="shippingDate" />
-				</div>
-				<div class="col-md-4 py-1">
-					Tax:<input type="text" name="tax" />
-				</div>
-				<div class="col-md-4 py-1">
 					Status:<input type="text" name="status" />
 				</div>
 				<div class="col-md-4 py-1">
 					Payment Id:<input type="text" name="paymentId" />
 				</div>
 				<div class="col-md-4 py-1">
-					Payment Date:<input type="text" name="paymentDate" />
+					User Id:<input type="text" name="userId" />
 				</div>
 				<div class="col-md-12 py-1">
 					<input class="btn btn-primary" type="submit" value="submit" />
@@ -56,13 +47,17 @@
 		</thead>
 		
 		<tbody>
-			<c:forEach items="${categories}" var="order">
+			<c:forEach items="${orders}" var="order">
 				<tr>
-					<td><a href="/GoToAddEditOrder?id=${orders.getId()}">${orders.getId()}</a></td>
-					<td>${order.getName()}</td>
-					<td>${order.getImage()}</td>
-					<td>${order.isActive()}</td>
-					<td>${order.getDescription()}</td>
+					<td><a href="/AdminOrderDetail?id=${order.getId()}">${order.getId()}</a></td>
+					<td>${order.getNumber()}</td>
+					<td>${order.getOrderDate()}</td>
+					<td>${order.getShippingDate()}</td>
+					<td>${order.getTax()}</td>
+					<td>${order.getStatus()}</td>
+					<td>${order.getUserid()}</td>
+					<td>${order.getPaymentid()}</td>
+					<td>${order.getPaymentDate()}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
