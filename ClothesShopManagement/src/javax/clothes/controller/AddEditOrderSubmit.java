@@ -1,9 +1,6 @@
 package javax.clothes.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.clothes.bo.OrderBO;
 import javax.clothes.dto.OrderDTO;
@@ -19,11 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AddEditOrderSubmit")
 public class AddEditOrderSubmit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private boolean isMultipart;
-	private String filePath;
-	private int maxFileSize = 50 * 1024;
-	private int maxMemSize = 4 * 1024;
-	private File file;
+	
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -31,7 +24,7 @@ public class AddEditOrderSubmit extends HttpServlet {
 	public AddEditOrderSubmit() {
 		super();
 		// TODO Auto-generated constructor stub
-		filePath = getServletContext().getInitParameter("file-upload");
+		
 	}
 
 	/**
@@ -48,7 +41,8 @@ public class AddEditOrderSubmit extends HttpServlet {
 		if(request.getParameter("shippingDate") != null ) orderdto.setShippingDate(request.getParameter("shippingDate"));
 		if(request.getParameter("tax") != null ) orderdto.setTax(Integer.parseInt(request.getParameter("tax")));
 		if(request.getParameter("status") != null ) orderdto.setStatus(request.getParameter("status"));
-		if(request.getParameter("paymentId") != null ) orderdto.setPaymentid(Integer.parseInt(request.getParameter("paymentId")));
+		orderdto.setPaymentid(1);
+		orderdto.setUserid(2);
 		if(request.getParameter("paymentDate") != null ) orderdto.setPaymentDate(request.getParameter("paymentDate"));
 		try {
 			System.out.print(orderbo.addOrder(orderdto));

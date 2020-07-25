@@ -1,9 +1,6 @@
 package javax.clothes.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.clothes.bo.SupplierBO;
 import javax.clothes.dto.SupplierDTO;
@@ -19,11 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AddEditSupplierSubmit")
 public class AddEditSupplierSubmit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private boolean isMultipart;
-	private String filePath;
-	private int maxFileSize = 50 * 1024;
-	private int maxMemSize = 4 * 1024;
-	private File file;
+	
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -31,7 +24,7 @@ public class AddEditSupplierSubmit extends HttpServlet {
 	public AddEditSupplierSubmit() {
 		super();
 		// TODO Auto-generated constructor stub
-		filePath = getServletContext().getInitParameter("file-upload");
+		
 	}
 
 	/**

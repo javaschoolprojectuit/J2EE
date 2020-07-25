@@ -1,7 +1,6 @@
 package javax.clothes.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.clothes.bo.SupplierBO;
 import javax.clothes.dto.SupplierDTO;

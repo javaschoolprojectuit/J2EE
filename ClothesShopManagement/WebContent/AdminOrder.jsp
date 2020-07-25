@@ -37,12 +37,14 @@
 		<thead class="thead-dark">
 			<tr>
 				<th>id</th>
-				<th>Number</th>
-				<th>Tax</th>
-				<th>Status</th>
-				<th>Shipping Date</th>
-				<th>Order Date</th>
-				<th>Payment Date</th>
+                <th>Number</th>
+                <th>Tax</th>
+                <th>Status</th>
+                <th>Shipping Date</th>
+                <th>Order Date</th>
+                <th>Payment Date</th>
+                <th>User id</th>
+                <th>Payment id</th>
 			</tr>
 		</thead>
 		
@@ -51,13 +53,13 @@
 				<tr>
 					<td><a href="/AdminOrderDetail?id=${order.getId()}">${order.getId()}</a></td>
 					<td>${order.getNumber()}</td>
-					<td>${order.getOrderDate()}</td>
-					<td>${order.getShippingDate()}</td>
-					<td>${order.getTax()}</td>
-					<td>${order.getStatus()}</td>
-					<td>${order.getUserid()}</td>
-					<td>${order.getPaymentid()}</td>
-					<td>${order.getPaymentDate()}</td>
+                    <td>${order.getTax()}</td>
+                    <td>${order.getStatus()}</td>
+                    <td>${order.getShippingDate()}</td>
+                    <td>${order.getOrderDate()}</td>
+                    <td>${order.getPaymentDate()}</td>
+                    <td>${order.getUserid()}</td>
+                    <td>${order.getPaymentid()}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

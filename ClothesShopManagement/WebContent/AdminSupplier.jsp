@@ -55,7 +55,7 @@
 		<tbody>
 			<c:forEach items="${suppliers}" var="supplier">
 				<tr>
-					<td><a href="/GoToAddEditSupplier?id=${suppliers.getId()}">${suppliers.getId()}</a></td>
+					<td><a href="/GoToAddEditSupplier?id=${supplier.getId()}">${supplier.getId()}</a></td>
 					<td>${supplier.getName()}</td>
 					<td>${supplier.getCity()}</td>
 					<td>${supplier.getDistrict()}</td>
