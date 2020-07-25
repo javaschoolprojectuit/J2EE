@@ -58,6 +58,7 @@
 						</div>
 						<div class="col-md-6">
 							<Select class="form-control mt-4" name="size">
+								<option value="0"> </option>
 								<option value="68">XS</option>
 								<option value="72">S</option>
 								<option value="76">M</option>
@@ -117,7 +118,7 @@
 							<td>${product.getDescription()}</td>
 							<td>${product.getPrice()}</td>
 							<td>${product.getSize()}</td>
-							<td>${product.getImage()}</td>
+							<td><img src="${product.getImage()}" alt="${product.getImage()}"></td>
 							<td>${product.getCatId()}</td>
 							<td>${product.getSuppId()}</td>
 							<td>${product.getQuantity()}</td>

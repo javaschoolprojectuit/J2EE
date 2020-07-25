@@ -72,7 +72,7 @@ public class ProductMapper extends DBMapper{
 		if (!priceOrder.equals("")) {
 			priceSql = " AND PRICE " + priceOrder + product.getPrice();
 		}
-		if (!sizeOrder.equals("")) {
+		if (!sizeOrder.equals("") && product.getSize() > 0) {
 			sizeSql = " AND SIZE " + sizeOrder + product.getSize();
 		}
 		if (!quanOrder.equals("")) {

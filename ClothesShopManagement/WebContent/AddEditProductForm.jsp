@@ -29,6 +29,7 @@
 			<div class="col-md-8"></div>
 			<div class="col-md-4 py-1">
 				<c:set var="selected" value='selected="selected"' />
+				Size:
 				<Select class="form-control" name="size">
 					<option value="">none</option>
 					<option value="68" <c:if test="${inputProd.getSize() == 68}"> <c:out value='${selected}' /></c:if>>XS</option>
