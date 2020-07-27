@@ -29,6 +29,9 @@
 							<input class="form-control" type="password" name="password" placeholder="Password" required/>
 							<hr class="mt-4">
 						</div>
+						<div class="col-md-12 text-danger">
+							${loginErrorMessage}
+						</div>
 						
 						<div class="col-md-12 mx-auto pt-2">
 							<input class="btn form-control btn-primary" type="submit" value="login" />

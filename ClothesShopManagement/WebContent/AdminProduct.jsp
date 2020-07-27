@@ -118,7 +118,7 @@
 							<td>${product.getDescription()}</td>
 							<td>${product.getPrice()}</td>
 							<td>${product.getSize()}</td>
-							<td><img src="${product.getImage()}" alt="${product.getImage()}"></td>
+							<td>${product.getImage()}</td>
 							<td>${product.getCatId()}</td>
 							<td>${product.getSuppId()}</td>
 							<td>${product.getQuantity()}</td>

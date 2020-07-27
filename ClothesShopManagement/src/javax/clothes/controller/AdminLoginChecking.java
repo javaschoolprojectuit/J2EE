@@ -43,7 +43,8 @@ public class AdminLoginChecking extends HttpServlet {
 			oldSession.invalidate();
 		}
 		if(result.getId() <= 0) {
-			response.sendRedirect(request.getContextPath() + "/AdminLogin.jsp");
+			request.setAttribute("loginErrorMessage", "wrong email or password");
+			request.getRequestDispatcher("./AdminLogin.jsp").forward(request, response);
 		} else {
 			HttpSession newSession = request.getSession(true);
 			newSession.setAttribute("currentSession", result);
