@@ -52,7 +52,7 @@
 				<p>
 					<img src="${inputProd.getImage()}" alt="image" />
 				</p>
-				<input type="file" class="form-control" name="file" size="50" />
+				<input type="file" class="form-control" name="file" size="50" required />
 			</div>
 			<div class="col-md-8"></div>
 			<div class="col-md-4 py-1">
